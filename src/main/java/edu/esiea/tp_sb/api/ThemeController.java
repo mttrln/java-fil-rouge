@@ -1,0 +1,37 @@
+package edu.esiea.tp_sb.api;
+
+import edu.esiea.tp_sb.app.ThemeService;
+import edu.esiea.tp_sb.dto.PageDto;
+import edu.esiea.tp_sb.dto.lesson.LessonDto;
+import edu.esiea.tp_sb.dto.lesson.LessonPostDto;
+import edu.esiea.tp_sb.dto.theme.ThemeDto;
+import edu.esiea.tp_sb.dto.theme.ThemePostDto;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/themes")
+public class ThemeController {
+    private final ThemeService themeService;
+
+    public ThemeController(ThemeService themeService) {
+        this.themeService = themeService;
+    }
+
+    @GetMapping
+    public PageDto<ThemeDto> getThemes(@RequestParam int page, @RequestParam int pageSize)
+    {
+        return themeService.getThemes(page, pageSize);
+    }
+
+    @PostMapping
+    public ThemeDto createTheme(@RequestBody ThemePostDto themeDto)
+    {
+        return themeService.createTheme(themeDto);
+    }
+
+    @PostMapping("/{id}/lessons")
+    public LessonDto createLesson(@RequestBody LessonPostDto lessonDto, @PathVariable long id)
+    {
+        return themeService.createLesson(lessonDto, id);
+    }
+}
