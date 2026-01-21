@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 public class ThemeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idTheme;
 
     @Column(unique = true) @NotNull

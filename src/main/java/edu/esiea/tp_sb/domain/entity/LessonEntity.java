@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class LessonEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idLesson;
 
     @Column @NotNull

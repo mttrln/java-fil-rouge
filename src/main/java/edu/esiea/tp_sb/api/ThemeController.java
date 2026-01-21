@@ -23,6 +23,12 @@ public class ThemeController {
         return themeService.getThemes(page, pageSize);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteTheme(@PathVariable Long id)
+    {
+        themeService.deleteTheme(id);
+    }
+
     @PostMapping
     public ThemeDto createTheme(@RequestBody ThemePostDto themeDto)
     {
