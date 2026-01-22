@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.naming.AuthenticationException;
 import java.time.Instant;
 import java.util.List;
 
@@ -22,8 +23,9 @@ public class AuthService {
         this.jwtEncoder = jwtEncoder;
     }
 
-    public String authenticate(String username, String password) {
-        if (!"admin".equals(username)) throw new RuntimeException("Bad creds");
+    public String authenticate(String username, String password) throws AuthenticationException {
+        if (!"admin".equals(username))
+            throw new AuthenticationException("Username or password invalid.");
 
         Instant now = Instant.now();
         var claims = JwtClaimsSet.builder()

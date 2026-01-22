@@ -26,12 +26,14 @@ public class ThemeController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteTheme(@PathVariable Long id)
     {
         themeService.deleteTheme(id);
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ThemeDto createTheme(@Valid @RequestBody ThemePostDto themeDto)
     {
         return themeService.createTheme(themeDto);
