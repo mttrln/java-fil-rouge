@@ -26,12 +26,13 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
 	implementation("org.springframework.security:spring-security-oauth2-jose")
 
 	implementation("org.xerial:sqlite-jdbc:3.49.1.0")
 	implementation("org.hibernate.orm:hibernate-community-dialects")
 	implementation("org.mapstruct:mapstruct:1.6.3")
-	implementation("org.postgresql:postgresql:42.6.0")
+	implementation("org.postgresql:postgresql")
 
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

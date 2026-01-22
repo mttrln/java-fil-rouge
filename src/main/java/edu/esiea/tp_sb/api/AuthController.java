@@ -1,13 +1,12 @@
 package edu.esiea.tp_sb.api;
 
 import edu.esiea.tp_sb.app.AuthService;
-import edu.esiea.tp_sb.app.ThemeService;
-import edu.esiea.tp_sb.dto.PageDto;
-import edu.esiea.tp_sb.dto.lesson.LessonDto;
-import edu.esiea.tp_sb.dto.lesson.LessonPostDto;
-import edu.esiea.tp_sb.dto.theme.ThemeDto;
-import edu.esiea.tp_sb.dto.theme.ThemePostDto;
-import org.springframework.web.bind.annotation.*;
+import edu.esiea.tp_sb.dto.user.UserPostDto;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
@@ -19,7 +18,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public boolean login(@RequestParam String username, @RequestParam String password) {
-        return authService.authenticate(username, password);
+    public String login(@Valid @RequestBody UserPostDto user) {
+        return authService.authenticate(user.username, user.password);
     }
 }

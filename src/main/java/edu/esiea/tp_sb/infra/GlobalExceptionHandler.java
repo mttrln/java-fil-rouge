@@ -1,10 +1,8 @@
 package edu.esiea.tp_sb.infra;
 
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-
+import jakarta.servlet.http.HttpServletRequest;
 import org.postgresql.util.PSQLException;
+import org.postgresql.util.PSQLState;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
@@ -13,8 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import jakarta.servlet.http.HttpServletRequest;
-import org.postgresql.util.PSQLState;
+
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -71,10 +71,12 @@ public class GlobalExceptionHandler {
 
 
 
-    @ExceptionHandler(Throwable.class)    
-    public ResponseEntity<ProblemDetail> handleDefaultException(Throwable ex) {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ProblemDetail> handleDefaultException(Exception ex) {
         ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
         pd.setTitle("Internal Server Error");
+        pd.setDetail(ex.getMessage());
+        ex.printStackTrace();
 
         return ResponseEntity.internalServerError().body(pd);
     }

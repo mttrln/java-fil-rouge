@@ -1,6 +1,5 @@
 package edu.esiea.tp_sb.domain.repository;
 
-import edu.esiea.tp_sb.domain.entity.LessonEntity;
 import edu.esiea.tp_sb.domain.entity.UserEntity;
 import org.jspecify.annotations.NonNull;
 import org.springframework.data.domain.Page;

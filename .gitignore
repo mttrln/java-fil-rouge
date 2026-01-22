@@ -40,3 +40,4 @@ out/
 tp_sb.db
 tp_sb.db-shm
 tp_sb.db-wal
+.env
