@@ -10,6 +10,8 @@ import edu.esiea.tp_sb.dto.mappers.LessonMapper;
 import edu.esiea.tp_sb.dto.mappers.ThemeMapper;
 import edu.esiea.tp_sb.dto.theme.ThemeDto;
 import edu.esiea.tp_sb.dto.theme.ThemePostDto;
+import jakarta.persistence.EntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,10 +22,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class ThemeService {
     private final ThemeRepository themeRepository;
     private final LessonRepository lessonRepository;
+    private final EntityManager entityManager;
 
-    public ThemeService(ThemeRepository themeRepository, LessonRepository lessonRepository) {
+    public ThemeService(ThemeRepository themeRepository, LessonRepository lessonRepository, EntityManager entityManager) {
         this.themeRepository = themeRepository;
         this.lessonRepository = lessonRepository;
+        this.entityManager = entityManager;
     }
 
     public PageDto<ThemeDto> getThemes(int page, int size) {
@@ -37,10 +41,13 @@ public class ThemeService {
     }
 
     public LessonDto createLesson(LessonPostDto lessonDto, long themeId) {
-        var theme = themeRepository.findById(themeId)
-                .orElseThrow(() -> new IllegalArgumentException("Theme with id " + themeId + " not found"));
-        var lesson = LessonMapper.INSTANCE.lessonDTOToEntity(lessonDto);
-        lesson.setTheme(theme);
-        return LessonMapper.INSTANCE.lessonEntityToDTO(lessonRepository.save(lesson));
+        var theme = entityManager.getReference(ThemeEntity.class, themeId);
+        var lecture = LessonMapper.INSTANCE.lessonDTOToEntity(lessonDto);
+        lecture.setTheme(theme);
+        return LessonMapper.INSTANCE.lessonEntityToDTO(lessonRepository.save(lecture));
+    }
+
+    public void deleteTheme(Long id) {
+        themeRepository.deleteById(id);
     }
 }

@@ -4,10 +4,10 @@ import edu.esiea.tp_sb.domain.repository.LessonRepository;
 import edu.esiea.tp_sb.dto.PageDto;
 import edu.esiea.tp_sb.dto.lesson.LessonDto;
 import edu.esiea.tp_sb.dto.mappers.LessonMapper;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
