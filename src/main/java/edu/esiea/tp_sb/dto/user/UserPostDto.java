@@ -1,6 +1,8 @@
 package edu.esiea.tp_sb.dto.user;
 
+import edu.esiea.tp_sb.domain.enums.Role;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,8 +10,9 @@ import lombok.Setter;
 @Setter
 public class UserPostDto {
     @NotBlank(message = "Can't be blank")
-    public String username;
-
+    private String login;
     @NotBlank(message = "Can't be blank")
-    public String password;
+    private String password;
+    @NotNull(message = "Can't be null")
+    private Role role;
 }

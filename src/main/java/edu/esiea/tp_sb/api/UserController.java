@@ -1,0 +1,27 @@
+package edu.esiea.tp_sb.api;
+
+import edu.esiea.tp_sb.app.UserService;
+import edu.esiea.tp_sb.dto.user.UserDto;
+import edu.esiea.tp_sb.dto.user.UserPostDto;
+import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping
+    public UserDto createUser(@Valid @RequestBody UserPostDto userDto)
+    {
+        return userService.createUser(userDto);
+    }
+}

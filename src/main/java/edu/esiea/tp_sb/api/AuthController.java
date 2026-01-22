@@ -1,7 +1,7 @@
 package edu.esiea.tp_sb.api;
 
 import edu.esiea.tp_sb.app.AuthService;
-import edu.esiea.tp_sb.dto.user.UserPostDto;
+import edu.esiea.tp_sb.dto.user.LoginDto;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +20,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @RequestBody UserPostDto user) throws AuthenticationException {
+    public String login(@Valid @RequestBody LoginDto user) throws AuthenticationException {
         return authService.authenticate(user.username, user.password);
     }
 }

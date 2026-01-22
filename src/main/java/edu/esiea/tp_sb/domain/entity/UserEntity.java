@@ -1,5 +1,6 @@
 package edu.esiea.tp_sb.domain.entity;
 
+import edu.esiea.tp_sb.domain.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -24,7 +25,3 @@ public class UserEntity {
     private Role role;
 }
 
-enum Role {
-    ADMIN,
-    USER
-}
