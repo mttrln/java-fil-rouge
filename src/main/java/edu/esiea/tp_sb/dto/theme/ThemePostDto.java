@@ -1,10 +1,13 @@
 package edu.esiea.tp_sb.dto.theme;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+
 public class ThemePostDto {
-    public String name;
+    @NotBlank(message = "Can't be blank")
+    private String name;
 }
