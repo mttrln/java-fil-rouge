@@ -23,6 +23,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.security:spring-security-oauth2-jose")
+
 	implementation("org.xerial:sqlite-jdbc:3.49.1.0")
 	implementation("org.hibernate.orm:hibernate-community-dialects")
 	implementation("org.mapstruct:mapstruct:1.6.3")
