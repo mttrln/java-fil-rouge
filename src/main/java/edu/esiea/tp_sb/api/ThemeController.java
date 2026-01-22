@@ -20,6 +20,7 @@ public class ThemeController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('LEARNER')")
     public PageDto<ThemeDto> getThemes(@RequestParam int page, @RequestParam int pageSize)
     {
         return themeService.getThemes(page, pageSize);

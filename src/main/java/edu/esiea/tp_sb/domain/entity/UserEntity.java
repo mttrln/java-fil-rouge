@@ -14,14 +14,17 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUser;
 
-
-    @Column(unique = true) @NotNull
+    @Column(unique = true) 
+    @NotNull
     private String login;
 
-    @Column(unique = true) @NotNull
+    @Column 
+    @NotNull
     private String password;
 
-    @Column(unique = true) @Enumerated(EnumType.STRING) @NotNull
+    @Column 
+    @Enumerated(EnumType.STRING) 
+    @NotNull
     private Role role;
 }
 

@@ -5,6 +5,8 @@ import edu.esiea.tp_sb.dto.mappers.UserMapper;
 import edu.esiea.tp_sb.dto.user.UserDto;
 import edu.esiea.tp_sb.dto.user.UserPostDto;
 import jakarta.validation.Valid;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,12 +14,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public UserDto createUser(@Valid UserPostDto userDto) {
-        return UserMapper.INSTANCE.userEntityToDTO(userRepository.save(UserMapper.INSTANCE.dtoToUserEntity(userDto)));
+        var user = UserMapper.INSTANCE.dtoToUserEntity(userDto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return UserMapper.INSTANCE.userEntityToDTO(userRepository.save(user));
     }
 }
