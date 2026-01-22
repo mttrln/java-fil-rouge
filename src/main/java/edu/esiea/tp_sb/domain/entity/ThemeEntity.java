@@ -1,7 +1,6 @@
 package edu.esiea.tp_sb.domain.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +14,7 @@ public class ThemeEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idTheme;
 
-    @Column(unique = true) @NotNull
+    @Column(unique = true, nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "theme", cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH}, targetEntity = LessonEntity.class, fetch = FetchType.LAZY)

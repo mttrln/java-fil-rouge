@@ -6,6 +6,7 @@ import edu.esiea.tp_sb.dto.lesson.LessonDto;
 import edu.esiea.tp_sb.dto.lesson.LessonPostDto;
 import edu.esiea.tp_sb.dto.theme.ThemeDto;
 import edu.esiea.tp_sb.dto.theme.ThemePostDto;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,13 +31,13 @@ public class ThemeController {
     }
 
     @PostMapping
-    public ThemeDto createTheme(@RequestBody ThemePostDto themeDto)
+    public ThemeDto createTheme(@Valid @RequestBody ThemePostDto themeDto)
     {
         return themeService.createTheme(themeDto);
     }
 
     @PostMapping("/{id}/lessons")
-    public LessonDto createLesson(@RequestBody LessonPostDto lessonDto, @PathVariable long id)
+    public LessonDto createLesson(@Valid @RequestBody LessonPostDto lessonDto, @PathVariable long id)
     {
         return themeService.createLesson(lessonDto, id);
     }

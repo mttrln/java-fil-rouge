@@ -11,7 +11,6 @@ import edu.esiea.tp_sb.dto.mappers.ThemeMapper;
 import edu.esiea.tp_sb.dto.theme.ThemeDto;
 import edu.esiea.tp_sb.dto.theme.ThemePostDto;
 import jakarta.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
