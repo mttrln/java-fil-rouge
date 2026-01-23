@@ -20,7 +20,7 @@ class LessonController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('LEARNER')")
+    @PreAuthorize("hasAnyRole('LEARNER', 'AUTHOR', 'ADMIN')")
     public PageDto<LessonDto> getLessons(@RequestParam int page, @RequestParam int pageSize)
     {
         return lessonService.getLessons(page, pageSize);

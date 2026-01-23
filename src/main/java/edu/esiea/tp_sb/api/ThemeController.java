@@ -20,17 +20,10 @@ public class ThemeController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('LEARNER')")
+    @PreAuthorize("hasAnyRole('LEARNER', 'AUTHOR', 'ADMIN')")
     public PageDto<ThemeDto> getThemes(@RequestParam int page, @RequestParam int pageSize)
     {
         return themeService.getThemes(page, pageSize);
-    }
-
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public void deleteTheme(@PathVariable Long id)
-    {
-        themeService.deleteTheme(id);
     }
 
     @PostMapping

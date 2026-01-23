@@ -45,8 +45,4 @@ public class ThemeService {
         lecture.setTheme(theme);
         return LessonMapper.INSTANCE.lessonEntityToDTO(lessonRepository.save(lecture));
     }
-
-    public void deleteTheme(Long id) {
-        themeRepository.deleteById(id);
-    }
 }
