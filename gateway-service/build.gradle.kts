@@ -1,9 +1,9 @@
 plugins {
 	java
-	id("org.springframework.boot") version "4.0.1"
+	id("org.springframework.boot") version "3.4.2"
 	id("io.spring.dependency-management") version "1.1.7"
 }
-val springCloudVersion by extra("2025.1.0")
+val springCloudVersion by extra("2024.0.0")
 
 group = "edu.esiea"
 version = "0.0.1-SNAPSHOT"
@@ -11,7 +11,7 @@ description = "TP Fil rouge Spring boot"
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(25)
+		languageVersion = JavaLanguageVersion.of(22)
 	}
 }
 
@@ -20,12 +20,9 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.cloud:spring-cloud-starter-gateway")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
-
-
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
