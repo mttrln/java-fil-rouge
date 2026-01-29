@@ -11,7 +11,21 @@ spring:
         - id: catalog-route
           uri: lb://catalog-service
           predicates:
-            - Path=/api/**
+            - Path=/api/catalog/**
+          filters:
+            - StripPrefix=1
+        - id: auth-route
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=1
+        - id: progress-route
+          uri: lb://progress-service
+          predicates:
+            - Path=/api/progress/**
+          filters:
+            - StripPrefix=1
 
 server:
   port: 8080
