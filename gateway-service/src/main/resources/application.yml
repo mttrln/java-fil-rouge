@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+        routes:
+          - id: auth-route
+            uri: lb://auth-service
+            predicates:
+              - Path=/api/auth/**
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/educatalog
+    username: educatalog
+    password: supersecurepassword
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+
+jwt:
+  secret: change-me-to-a-very-long-secret-at-least-32-bytes

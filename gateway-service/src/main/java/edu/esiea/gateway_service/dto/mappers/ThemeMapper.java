@@ -1,0 +1,26 @@
+package edu.esiea.gateway_service.dto.mappers;
+
+import edu.esiea.gateway_service.domain.entity.ThemeEntity;
+import edu.esiea.gateway_service.dto.PageDto;
+import edu.esiea.gateway_service.dto.theme.ThemeDto;
+import edu.esiea.gateway_service.dto.theme.ThemePostDto;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
+
+@Mapper
+public interface ThemeMapper {
+    ThemeMapper INSTANCE = Mappers.getMapper(ThemeMapper.class);
+    ThemeDto themeEntityToDTO(ThemeEntity theme);
+    ThemeEntity dtoToThemeEntity(ThemePostDto theme);
+
+    default PageDto<ThemeDto> toPageDto(Page<ThemeEntity> entityPage) {
+        return new PageDto<>(
+                entityPage.getContent().stream()
+                        .map(this::themeEntityToDTO)
+                        .toList(),
+                entityPage.getNumber(),
+                entityPage.getTotalPages()
+        );
+    }
+}
