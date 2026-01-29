@@ -1,0 +1,20 @@
+package edu.esiea.auth_service.domain.repository;
+
+import edu.esiea.auth_service.domain.entity.UserEntity;
+import lombok.NonNull;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+
+    @EntityGraph(attributePaths = {"role"})
+    Page<@NonNull UserEntity> findAll(@NonNull Pageable pageable);
+
+    Optional<UserEntity> findByLogin(@NonNull String login);
+}
