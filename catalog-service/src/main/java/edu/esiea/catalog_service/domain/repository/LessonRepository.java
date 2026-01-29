@@ -1,7 +1,7 @@
 package edu.esiea.catalog_service.domain.repository;
 
 import edu.esiea.catalog_service.domain.entity.LessonEntity;
-import org.jspecify.annotations.NonNull;
+import lombok.NonNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;

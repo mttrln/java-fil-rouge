@@ -1,5 +1,6 @@
 package edu.esiea.catalog_service.infra;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
@@ -32,7 +33,6 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
-import tools.jackson.databind.ObjectMapper;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
